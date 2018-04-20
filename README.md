@@ -31,8 +31,6 @@ separate container. There is also a visualizer app included, courtesy of the
 [Docker tutorial](https://docs.docker.com/get-started/part5/).
 
 
-<aside class="warning">
-This version is experimental and should *not* be used in production for
-security reasons.
-</aside>
+**NOTE**: This version is experimental and should not be used in production
+for security reasons.
 
