@@ -1,0 +1,65 @@
+#-  Docker Compose file
+
+#-  docker-compose.yml ~~
+#                                                       ~~ (c) SRW, 18 Apr 2018
+#                                                   ~~ last updated 18 Apr 2018
+
+version: "3"
+
+services:
+
+  db:
+    image: postgres:9.5
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    networks:
+      - webnet
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
+  web:
+    image: seanwilkinson/qm-ruby-turnkey
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+  # The "ports" definition dictates what port the app will load in from my
+  # laptop's native browser.
+    ports:
+      - "80:8177"
+    networks:
+      - webnet
+    environment:
+    # It turns out that the hostname, "db", is taken from the name of the
+    # Postgres service, so if you change that, you must change the URL below.
+      DATABASE_URL: "postgres://user:pass@db:5432/user"
+      PORT: 8177
+      WEB_CONCURRENCY: 1
+    depends_on:
+      - db
+
+# This part is just pasted in from the tutorial because it definitely helps me
+# figure out what is going on while debugging :-)
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+
+networks:
+  webnet:
+
+
+#-  vim:set syntax=yaml:
