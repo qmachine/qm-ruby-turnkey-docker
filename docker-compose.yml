@@ -2,7 +2,7 @@
 
 #-  docker-compose.yml ~~
 #                                                       ~~ (c) SRW, 18 Apr 2018
-#                                                   ~~ last updated 18 Apr 2018
+#                                                   ~~ last updated 20 Apr 2018
 
 version: "3"
 
@@ -20,7 +20,7 @@ services:
         constraints: [node.role == manager]
 
   web:
-    image: qmachine/qm-ruby-turnkey
+    image: qmachine/qm-ruby-turnkey:latest
     deploy:
       replicas: 2
       restart_policy:
