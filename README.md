@@ -25,6 +25,12 @@ Details
 
 This project is a demonstration for packaging the
 [QMachine turnkey app](https://github.com/qmachine/qm-ruby-turnkey), which was
-originally written as a Heroku app, as a basic Docker container. This version
-is experimental and should *not* be used for production for security reasons.
+originally written as a Heroku app, as a basic Docker container. The container
+is then run as part of a stack along with a PostgreSQL database running in a
+separate container. There is also a visualizer app included, courtesy of the
+[Docker tutorial](https://docs.docker.com/get-started/part5/).
+
+
+NOTE: This version is experimental and should *not* be used for production for
+security reasons.
 
