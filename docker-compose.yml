@@ -20,7 +20,7 @@ services:
         constraints: [node.role == manager]
 
   web:
-    image: seanwilkinson/qm-ruby-turnkey
+    image: qmachine/qm-ruby-turnkey
     deploy:
       replicas: 2
       restart_policy:
