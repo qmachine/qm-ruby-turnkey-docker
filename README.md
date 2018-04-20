@@ -7,6 +7,7 @@ tl;dr
 To run a test version of QMachine as a Docker stack:
 
 ```bash
+$ docker build -t seanwilkinson/qm-ruby-turnkey .
 $ docker swarm init
 $ docker stack deploy -c docker-compose.yml qmachine
 ```
